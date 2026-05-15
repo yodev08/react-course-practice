@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- 页面标题（显示在浏览器标签页） -->
+    <title>React Basics</title>
+  </head>
+  <body>
+    <!-- React 挂载点：渲染结果会放到这个容器里 -->
+    <div class="js-container"></div>
+
+    <!-- React 核心库（提供创建组件等能力） -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <!-- ReactDOM（负责把 React 内容渲染到真实 DOM） -->
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- Babel（让浏览器直接运行 text/babel 代码） -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function ProductDetails({ productName, price, discountPrice }) {
+        const discountPriceElement =
+          discountPrice !== undefined && (
+            <span>discountPrice:{discountPrice}</span>
+          );
+
+        return (
+          <>
+            <p>productName:{productName}</p>
+            {!discountPrice ? (
+              <span>price:{price}</span>
+            ) : (
+              <span>
+                <del>price:{price}</del>
+              </span>
+            )}
+            {discountPriceElement}
+            <div>
+              <button>Add to Cart</button>
+            </div>
+          </>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <ProductDetails
+              productName="Cotton socks"
+              price="$10.90"
+              discountPrice="$5.45"
+            />
+            <ProductDetails productName="Tennis balls" price="$6.00" />
+            <ProductDetails productName="Plain T-Shirt" price="$7.99" />
+          </>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
