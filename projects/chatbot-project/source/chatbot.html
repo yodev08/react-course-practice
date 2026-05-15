@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- 页面标题（显示在浏览器标签页） -->
+    <title>chatbot</title>
+  </head>
+  <body>
+    <!-- React 挂载点：渲染结果会放到这个容器里 -->
+    <div class="js-container"></div>
+
+    <!-- React 核心库（提供创建组件等能力） -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <!-- ReactDOM（负责把 React 内容渲染到真实 DOM） -->
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- Babel（让浏览器直接运行 text/babel 代码） -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function ChatInput() {
+        return (
+          <>
+            <input placeholder="seng a message to chatbot" size="30" />
+            <button>Send</button>
+          </>
+        );
+      }
+
+      function ChatMessage({ message, sender }) {
+        return (
+          <div>
+            {sender === "robot" && (
+              <img src="../assets/robot.png" alt="robot" width=" 45px" />
+            )}
+
+            {message}
+
+            {sender === "user" && (
+              <img src="../assets/user.png" alt="robot" width=" 45px" />
+            )}
+          </div>
+        );
+      }
+
+      function ChatMessages() {
+        const array = React.useState([
+          {
+            message: "hello chatbot",
+            sender: "user",
+            id: "id1",
+          },
+          {
+            message: "Hello! Howcan I help you?",
+            sender: "robot",
+            id: "id2",
+          },
+          {
+            message: "can you get me todays date?",
+            sender: "user",
+            id: "id3",
+          },
+          {
+            message: "Today is September 27",
+            sender: "robot",
+            id: crypto.randomUUID(),
+          },
+        ]);
+
+        const chatMessages = array[0];
+        const setChatMessages = array[1];
+
+        function sendMessage() {
+          setChatMessages({
+            ...chatMessages,
+          });
+        }
+
+        return (
+          <>
+            <button onClick={sendMessage}>Send Message</button>
+
+            {chatMessages.map((chatMessage) => {
+              return (
+                <ChatMessage
+                  message={chatMessage.message}
+                  sender={chatMessage.sender}
+                  key={chatMessage.id}
+                />
+              );
+            })}
+          </>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <ChatInput />
+            <ChatMessages />
+          </>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
