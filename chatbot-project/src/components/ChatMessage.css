@@ -14,6 +14,10 @@
 .chat-message-robot img {
   width: 45px;
 }
+.chat-message-content {
+  display: flex;
+  flex-direction: column;
+}
 .chat-message-text {
   background-color: rgb(238, 238, 238);
   border-radius: 10px;
@@ -26,4 +30,14 @@
 .chat-message-text img {
   height: 40px;
   margin: -15px;
+}
+.chat-message-time {
+  margin: -10px 10px 20px;
+  color: rgb(108, 117, 125);
+  font-size: 12px;
+}
+.UserProfileImage {
+  height: 45px;
+  border-radius: 45px;
+  object-fit: cover;
 }

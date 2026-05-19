@@ -2,45 +2,53 @@ import { useState } from "react";
 import { Chatbot } from "supersimpledev";
 import "./ChatInput.css";
 
-export function ChatInput({ chatMessages, setChatMessages }) {
+export function ChatInput({ chatMessages, setChatMessages, onClear }) {
   const [inputText, setInputText] = useState("");
 
   function saveInputText(event) {
     setInputText(event.target.value);
   }
 
-  function sendMessage() {
+  async function sendMessage() {
+    const trimmedInputText = inputText.trim();
+
+    if (!trimmedInputText) {
+      return;
+    }
+
     const newChatMessages = [
       ...chatMessages,
       {
-        message: inputText,
+        message: trimmedInputText,
         sender: "user",
         id: crypto.randomUUID(),
+        time: Date.now(),
       },
     ];
 
     setChatMessages([
       ...newChatMessages,
       {
-        message: "../assets/loading-spinner.svg",
+        message: "",
         sender: "robot",
         id: crypto.randomUUID(),
         isLoading: true,
+        time: Date.now(),
       },
     ]);
 
-    setTimeout(() => {
-      const response = Chatbot.getResponse(inputText);
+    const response = await Chatbot.getResponseAsync(trimmedInputText);
 
-      setChatMessages([
-        ...newChatMessages,
-        {
-          message: response,
-          sender: "robot",
-          id: crypto.randomUUID(),
-        },
-      ]);
-    }, 1000);
+    setChatMessages([
+      ...newChatMessages,
+      {
+        message: response,
+        sender: "robot",
+        id: crypto.randomUUID(),
+        time: Date.now(),
+      },
+    ]);
+
     setInputText("");
   }
 
@@ -62,6 +70,9 @@ export function ChatInput({ chatMessages, setChatMessages }) {
       />
       <button className="send-button" onClick={sendMessage}>
         Send
+      </button>
+      <button className="clear-button" onClick={onClear}>
+        Clear
       </button>
     </div>
   );

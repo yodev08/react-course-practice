@@ -26,6 +26,7 @@ function ChatMessages({ chatMessages }) {
             message={chatMessage.message}
             sender={chatMessage.sender}
             isLoading={chatMessage.isLoading}
+            time={chatMessage.time}
             key={chatMessage.id}
           />
         );
