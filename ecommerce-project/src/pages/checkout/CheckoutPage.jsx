@@ -1,6 +1,6 @@
 import "./CheckoutPage.css";
 import "./checkout-header.css";
-import { OrderSummary } from "./orderSummary";
+import { OrderSummary } from "./OrderSummary";
 import { PaymentSummary } from "./paymentSummary";
 
 import axios from "axios";
