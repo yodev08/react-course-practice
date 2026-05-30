@@ -1,12 +1,26 @@
 import "./header.css";
-import { Link } from "react-router";
+import { Link, useNavigate, useSearchParams } from "react-router";
+import { useState, useEffect } from "react";
 
 export function Header({ cart }) {
+  const [search, setSearch] = useState("");
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const searchParam = searchParams.get("search") || "";
+    setSearch(searchParam);
+  }, [searchParams]);
+
   let totalQuantity = 0;
 
   cart.forEach((cartItem) => {
     totalQuantity += cartItem.quantity;
   });
+
+  const handleSearch = () => {
+    navigate(`/?search=${search}`);
+  };
   return (
     <div className="header">
       <div className="left-section">
@@ -17,9 +31,15 @@ export function Header({ cart }) {
       </div>
 
       <div className="middle-section">
-        <input className="search-bar" type="text" placeholder="Search" />
+        <input
+          className="search-bar"
+          type="text"
+          placeholder="Search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
-        <button className="search-button">
+        <button className="search-button" onClick={handleSearch}>
           <img className="search-icon" src="images/icons/search-icon.png" />
         </button>
       </div>
