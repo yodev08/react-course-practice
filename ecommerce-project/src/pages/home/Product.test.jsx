@@ -13,7 +13,7 @@ describe("Product component", () => {
 
   beforeEach(() => {
     user = userEvent.setup();
-    
+
     product = {
       id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -65,7 +65,7 @@ describe("Product component", () => {
 
     const quantitySelector = screen.getByTestId("quantity-selector");
     await user.selectOptions(quantitySelector, "3");
-    
+
     expect(quantitySelector).toHaveValue("3");
   });
 

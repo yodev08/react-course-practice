@@ -30,7 +30,10 @@ describe("PaymentSummary component", () => {
   it("displays payment summary correctly", () => {
     render(
       <MemoryRouter>
-        <PaymentSummary paymentSummary={paymentSummary} loadCartData={loadCartData} />
+        <PaymentSummary
+          paymentSummary={paymentSummary}
+          loadCartData={loadCartData}
+        />
       </MemoryRouter>,
     );
 
@@ -55,7 +58,10 @@ describe("PaymentSummary component", () => {
           <Route
             path="/"
             element={
-              <PaymentSummary paymentSummary={paymentSummary} loadCartData={loadCartData} />
+              <PaymentSummary
+                paymentSummary={paymentSummary}
+                loadCartData={loadCartData}
+              />
             }
           />
           <Route path="/orders" element={<div>Orders Page</div>} />

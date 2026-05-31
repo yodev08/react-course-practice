@@ -14,7 +14,7 @@ describe("HomePage component", () => {
   beforeEach(() => {
     user = userEvent.setup();
     loadCartData = vi.fn();
-    
+
     // Clear all mocks before each test
     vi.clearAllMocks();
 
@@ -80,10 +80,14 @@ describe("HomePage component", () => {
 
     const productContainers = await screen.findAllByTestId("product-container");
 
-    const firstAddButton = within(productContainers[0]).getByTestId("add-to-cart-button");
+    const firstAddButton = within(productContainers[0]).getByTestId(
+      "add-to-cart-button",
+    );
     await user.click(firstAddButton);
 
-    const secondAddButton = within(productContainers[1]).getByTestId("add-to-cart-button");
+    const secondAddButton = within(productContainers[1]).getByTestId(
+      "add-to-cart-button",
+    );
     await user.click(secondAddButton);
 
     expect(axios.post).toHaveBeenNthCalledWith(1, "/api/cart-items", {
@@ -109,16 +113,24 @@ describe("HomePage component", () => {
 
     const productContainers = await screen.findAllByTestId("product-container");
 
-    const firstQuantitySelector = within(productContainers[0]).getByTestId("quantity-selector");
+    const firstQuantitySelector = within(productContainers[0]).getByTestId(
+      "quantity-selector",
+    );
     await user.selectOptions(firstQuantitySelector, "2");
 
-    const secondQuantitySelector = within(productContainers[1]).getByTestId("quantity-selector");
+    const secondQuantitySelector = within(productContainers[1]).getByTestId(
+      "quantity-selector",
+    );
     await user.selectOptions(secondQuantitySelector, "3");
 
-    const firstAddButton = within(productContainers[0]).getByTestId("add-to-cart-button");
+    const firstAddButton = within(productContainers[0]).getByTestId(
+      "add-to-cart-button",
+    );
     await user.click(firstAddButton);
 
-    const secondAddButton = within(productContainers[1]).getByTestId("add-to-cart-button");
+    const secondAddButton = within(productContainers[1]).getByTestId(
+      "add-to-cart-button",
+    );
     await user.click(secondAddButton);
 
     expect(axios.post).toHaveBeenCalledTimes(2);
