@@ -1,166 +1,163 @@
 # 🛍️ E-Commerce Project
 
-一个功能完整的React电商网站，包含产品展示、搜索、购物车、订单管理和实时配送跟踪功能。
+A fully-featured React e-commerce website featuring product display, search, shopping cart, order management, and real-time delivery tracking.
 
-## ✨ 主要功能
+## ✨ Key Features
 
-### 核心功能
-- 📱 **产品展示** - 响应式网格布局，支持8列到流动显示
-- 🔍 **搜索功能** - 实时搜索产品，URL参数持久化
-- 🛒 **购物车管理**
-  - 添加/删除商品
-  - 修改数量
-  - 自动更新配送选项
-  - 支付总结实时更新
+### Core Features
+- 📱 **Product Display** - Responsive grid layout, scales from 8 columns to fluid display
+- 🔍 **Search Functionality** - Real-time product search with URL parameter persistence
+- 🛒 **Shopping Cart Management**
+  - Add/remove items
+  - Modify quantities
+  - Auto-update delivery options
+  - Real-time payment summary updates
 
-### 高级功能
-- 📦 **配送选项** - 多种配送方式选择
-- 💳 **结账流程** - 二栏布局（订单总结 + 支付总结）
-- 📋 **订单管理** - 查看订单历史，按日期排序
-- 📍 **配送跟踪** - 动态进度条，实时状态显示（准备中、已发货、已送达）
-- ✅ **自动化测试** - 13+个单元和集成测试
+### Advanced Features
+- 📦 **Delivery Options** - Multiple shipping method choices
+- 💳 **Checkout Flow** - Two-column layout (order summary + payment summary)
+- 📋 **Order Management** - View order history sorted by date
+- 📍 **Delivery Tracking** - Dynamic progress bar with real-time status (Preparing → Shipped → Delivered)
+- ✅ **Automated Testing** - 13+ unit and integration tests
 
-## 🛠 技术栈
+## 🛠 Tech Stack
 
-| 技术 | 说明 |
+| Technology | Description |
 |------|------|
-| **React 19** | 前端框架 |
-| **Vite 6** | 构建工具 |
-| **React Router 7** | 路由管理 |
-| **Axios** | HTTP客户端 |
-| **Vitest** | 单元测试框架 |
-| **React Testing Library** | 组件测试库 |
-| **CSS3** | 样式（Grid、Flexbox） |
+| **React 19** | Frontend framework |
+| **Vite 6** | Build tool |
+| **React Router 7** | Routing management |
+| **Axios** | HTTP client |
+| **Vitest** | Unit testing framework |
+| **React Testing Library** | Component testing library |
+| **CSS3** | Styling (Grid, Flexbox) |
 
-## 📦 项目结构
+## 📦 Project Structure
 
 ```
 src/
-├── components/          # 共享组件
-│   └── Header.jsx       # 顶部导航（搜索+购物车+订单）
+├── components/          # Shared components
+│   └── Header.jsx       # Navigation (search + cart + orders)
 ├── pages/
-│   ├── home/           # 首页
+│   ├── home/           # Home page
 │   │   ├── HomePage.jsx
 │   │   ├── product.jsx
 │   │   ├── productsGrid.jsx
 │   │   └── *.test.jsx
-│   ├── checkout/       # 结账页
+│   ├── checkout/       # Checkout page
 │   │   ├── CheckoutPage.jsx
 │   │   ├── OrderSummary.jsx
 │   │   ├── CartItemDetails.jsx
 │   │   ├── DeliveryOptions.jsx
 │   │   ├── paymentSummary.jsx
 │   │   └── PaymentSummary.test.jsx
-│   ├── orders/         # 订单页
+│   ├── orders/         # Orders page
 │   │   ├── OrdersPage.jsx
 │   │   ├── OrdersGrid.jsx
 │   │   ├── OrderHeader.jsx
 │   │   └── OrderDetailsGrid.jsx
-│   └── Trackingpage.jsx # 配送跟踪页
+│   └── Trackingpage.jsx # Delivery tracking page
 ├── utils/
-│   └── money.js        # 货币格式化工具
-├── App.jsx             # 路由配置
-└── main.jsx            # 应用入口
+│   └── money.js        # Currency formatting utility
+├── App.jsx             # Route configuration
+└── main.jsx            # Application entry point
 ```
 
-## 🚀 快速开始
+## 🚀 Getting Started
 
-### 前置要求
+### Prerequisites
 - Node.js 18+
 - npm 9+
 
-### 安装依赖
+### Install Dependencies
 ```bash
 npm install
 ```
 
-### 开发模式运行
+### Run Development Server
 ```bash
 npm run dev
 ```
-访问 `http://localhost:5173`
+Visit `http://localhost:5173`
 
-### 生产构建
+### Production Build
 ```bash
 npm run build
 npm run preview
 ```
 
-### 运行测试
+### Run Tests
 ```bash
-npm test              # 运行测试（观察模式）
-npm test -- --run     # 运行测试一次
+npm test              # Run tests in watch mode
+npm test -- --run     # Run tests once
 ```
 
-## 📸 界面展示
+## 📸 Project Screenshots
 
-### 首页 - 产品展示与搜索
-![首页产品展示](./screenshots/home-page.png)
+### Home Page - Product Display & Search
+![Home Page](./screenshots/home-page.png)
 
-### 购物车 - 结账页面
-![购物车页面](./screenshots/checkout-page.png)
+### Checkout Page - Shopping Cart
+![Checkout Page](./screenshots/checkout-page.png)
 
-### 订单 - 历史订单
-![订单页面](./screenshots/orders-page.png)
+### Tracking Page - Real-time Delivery Progress
+![Tracking Page](./screenshots/tracking-page.png)
 
-### 配送追踪 - 实时进度
-![配送追踪](./screenshots/tracking-page.png)
+## 📋 Course Exercises Completion
 
-## 📋 课程练习完成情况
+### Lesson 8 - Core Features
+- ✅ 8a-8d: Add to cart, Added message
+- ✅ 8e-8i: Quantity edit functionality
+- ✅ 8j-8l: Search implementation
 
-### Lesson 8 - 核心功能
-- ✅ 8a-8d: 添加购物车、Added消息
-- ✅ 8e-8i: 数量编辑功能
-- ✅ 8j-8l: 搜索功能实现
-
-### Lesson 9 - 自动化测试
+### Lesson 9 - Automated Testing
 - ✅ 9a: formatMoney(0) → '$0.00'
-- ✅ 9b: 负数格式 → '-$9.99'
-- ✅ 9c-9e: Product组件测试
-- ✅ 9f: userEvent复用
-- ✅ 9g-9h: HomePage Add to Cart测试
-- ✅ 9i-9j: PaymentSummary集成测试
+- ✅ 9b: Negative number format → '-$9.99'
+- ✅ 9c-9e: Product component tests
+- ✅ 9f: userEvent reuse
+- ✅ 9g-9h: HomePage Add to Cart tests
+- ✅ 9i-9j: PaymentSummary integration tests
 
-**测试覆盖**: 13/13 tests ✓
+**Test Coverage**: 13/13 tests ✓
 
-## 📝 笔记
+## 📝 Implementation Notes
 
-### 关键实现
-- 搜索使用URL参数 `?search=query` 持久化
-- 配送跟踪通过 `useParams()` 获取 `:orderId/:productId`
-- 进度计算: `(timePassedMs / totalTimeMs) * 100`
-- 支付总结依赖购物车更新自动刷新
+### Key Implementation Details
+- Search uses URL parameter `?search=query` for persistence
+- Delivery tracking retrieves `:orderId/:productId` via `useParams()`
+- Progress calculation: `(timePassedMs / totalTimeMs) * 100`
+- Payment summary auto-refreshes when cart is updated
 
-### 文件说明
-- `money.js` - 处理正负数的货币格式化
-- `CartItemDetails.jsx` - 提取的可复用组件（数量编辑）
-- `PaymentSummary.jsx` - 支付总结（使用useNavigate）
+### Important Files
+- `money.js` - Handles currency formatting for positive and negative numbers
+- `CartItemDetails.jsx` - Reusable component for quantity editing
+- `PaymentSummary.jsx` - Payment summary using `useNavigate`
 
-## 🤝 后端API
+## 🤝 Backend API
 
-与 `ecommerce-backend` 项目配合使用：
-- `GET /api/products` - 获取产品列表
-- `GET /api/products?search=` - 搜索产品
-- `POST /api/cart-items` - 添加到购物车
-- `PUT /api/cart-items/:productId` - 更新数量
-- `DELETE /api/cart-items/:productId` - 删除项
-- `GET /api/orders` - 获取订单列表
-- `GET /api/orders/:orderId` - 获取单个订单
-- `POST /api/orders` - 创建订单
-- `GET /api/delivery-options` - 获取配送选项
-- `GET /api/payment-summary` - 获取支付总结
+Works with the `ecommerce-backend` project:
+- `GET /api/products` - Get product list
+- `GET /api/products?search=` - Search products
+- `POST /api/cart-items` - Add to cart
+- `PUT /api/cart-items/:productId` - Update quantity
+- `DELETE /api/cart-items/:productId` - Delete item
+- `GET /api/orders` - Get order list
+- `GET /api/orders/:orderId` - Get single order
+- `POST /api/orders` - Create order
+- `GET /api/delivery-options` - Get delivery options
+- `GET /api/payment-summary` - Get payment summary
 
-## 📖 相关资源
+## 📖 Resources
 
-- [React官方文档](https://react.dev)
-- [Vite官方文档](https://vitejs.dev)
-- [React Router文档](https://reactrouter.com)
-- [Vitest文档](https://vitest.dev)
+- [React Documentation](https://react.dev)
+- [Vite Documentation](https://vitejs.dev)
+- [React Router Documentation](https://reactrouter.com)
+- [Vitest Documentation](https://vitest.dev)
 
-## 📄 许可证
+## 📄 License
 
 MIT License
 
 ---
 
-**作者**: yoyo | **最后更新**: 2026年5月
+**Author**: yoyo | **Last Updated**: May 2026
