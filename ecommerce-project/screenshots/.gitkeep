@@ -1,0 +1,34 @@
+# Screenshots Directory
+
+将你的网页截图放在这个目录中：
+
+## 所需截图文件：
+
+1. **home-page.png** - 首页（产品列表和搜索）
+2. **checkout-page.png** - 购物车结账页面
+3. **orders-page.png** - 订单历史页面
+4. **tracking-page.png** - 配送跟踪页面
+
+### 如何添加截图：
+
+**Mac:**
+- 按 `Command + Shift + 4` 选择区域截图
+- 自动保存到桌面
+- 将截图拖到这个目录
+
+**或者使用VS Code:**
+1. 右键点击此目录
+2. 选择 "在Finder中打开"
+3. 将截图拖入
+
+**文件命名要求：**
+- 使用下划线连接单词（home_page.png）或连字符（home-page.png）
+- 使用小写字母
+- 格式：PNG或JPG
+
+### 截图内容建议：
+
+- **home-page.png**: 显示至少2个产品、搜索栏、Header
+- **checkout-page.png**: 显示购物车、配送选项、支付总结
+- **orders-page.png**: 显示订单列表、日期、总价
+- **tracking-page.png**: 显示进度条、状态标签、配送信息
