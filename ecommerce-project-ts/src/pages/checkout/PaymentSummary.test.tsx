@@ -1,16 +1,18 @@
 import { it, expect, describe, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import userEvent, { type UserEvent } from "@testing-library/user-event";
 import { MemoryRouter, Routes, Route } from "react-router";
 import { PaymentSummary } from "./paymentSummary";
 import axios from "axios";
+import type { Mock } from "vitest";
+import type { LoadCartData, PaymentSummaryData } from "../../types";
 
 vi.mock("axios");
 
 describe("PaymentSummary component", () => {
-  let paymentSummary;
-  let loadCartData;
-  let user;
+  let paymentSummary: PaymentSummaryData;
+  let loadCartData: Mock<LoadCartData>;
+  let user: UserEvent;
 
   beforeEach(() => {
     user = userEvent.setup();
@@ -26,7 +28,6 @@ describe("PaymentSummary component", () => {
     };
   });
 
-  // 9i: Integration test for PaymentSummary component
   it("displays payment summary correctly", () => {
     render(
       <MemoryRouter>
@@ -50,7 +51,6 @@ describe("PaymentSummary component", () => {
     expect(screen.getByText("$51.58")).toBeInTheDocument();
   });
 
-  // 9j: Test Place Order button functionality
   it("calls axios.post and loadCart on Place Order click", async () => {
     render(
       <MemoryRouter>
@@ -72,7 +72,7 @@ describe("PaymentSummary component", () => {
     const placeOrderButton = screen.getByText("Place your order");
     await user.click(placeOrderButton);
 
-    expect(axios.post).toHaveBeenCalledWith("/api/orders");
+    expect(vi.mocked(axios.post)).toHaveBeenCalledWith("/api/orders");
     expect(loadCartData).toHaveBeenCalled();
   });
 });

@@ -1,24 +1,25 @@
 import { it, expect, describe, vi, beforeEach } from "vitest";
 import { render, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import userEvent, { type UserEvent } from "@testing-library/user-event";
 import { MemoryRouter } from "react-router";
 import { HomePage } from "./HomePage";
 import axios from "axios";
+import type { Mock } from "vitest";
+import type { LoadCartData } from "../../types";
 
 vi.mock("axios");
 
 describe("HomePage component", () => {
-  let loadCartData;
-  let user;
+  let loadCartData: Mock<LoadCartData>;
+  let user: UserEvent;
 
   beforeEach(() => {
     user = userEvent.setup();
     loadCartData = vi.fn();
 
-    // Clear all mocks before each test
     vi.clearAllMocks();
 
-    axios.get.mockImplementation(async (urlPath) => {
+    vi.mocked(axios.get).mockImplementation(async (urlPath: string) => {
       if (urlPath === "/api/products") {
         return {
           data: [
@@ -31,7 +32,6 @@ describe("HomePage component", () => {
                 count: 87,
               },
               priceCents: 1090,
-              keywords: ["socks", "sports", "apparel"],
             },
             {
               id: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
@@ -42,11 +42,11 @@ describe("HomePage component", () => {
                 count: 127,
               },
               priceCents: 2095,
-              keywords: ["sports", "basketballs"],
             },
           ],
         };
       }
+      throw new Error(`Unexpected URL: ${urlPath}`);
     });
   });
 
@@ -70,7 +70,6 @@ describe("HomePage component", () => {
     ).toBeInTheDocument();
   });
 
-  // 9g: Test Add to Cart buttons on HomePage
   it("can add products to cart", async () => {
     render(
       <MemoryRouter>
@@ -90,12 +89,12 @@ describe("HomePage component", () => {
     );
     await user.click(secondAddButton);
 
-    expect(axios.post).toHaveBeenNthCalledWith(1, "/api/cart-items", {
+    expect(vi.mocked(axios.post)).toHaveBeenNthCalledWith(1, "/api/cart-items", {
       productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       quantity: 1,
     });
 
-    expect(axios.post).toHaveBeenNthCalledWith(2, "/api/cart-items", {
+    expect(vi.mocked(axios.post)).toHaveBeenNthCalledWith(2, "/api/cart-items", {
       productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
       quantity: 1,
     });
@@ -103,7 +102,6 @@ describe("HomePage component", () => {
     expect(loadCartData).toHaveBeenCalledTimes(2);
   });
 
-  // 9h: Test quantity selection before adding to cart
   it("can select different quantities and add to cart", async () => {
     render(
       <MemoryRouter>
@@ -133,7 +131,7 @@ describe("HomePage component", () => {
     );
     await user.click(secondAddButton);
 
-    expect(axios.post).toHaveBeenCalledTimes(2);
+    expect(vi.mocked(axios.post)).toHaveBeenCalledTimes(2);
     expect(loadCartData).toHaveBeenCalledTimes(2);
   });
 });

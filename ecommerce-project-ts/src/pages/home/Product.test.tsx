@@ -1,15 +1,17 @@
 import { it, expect, describe, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import userEvent, { type UserEvent } from "@testing-library/user-event";
 import { Product } from "./Product";
 import axios from "axios";
+import type { Mock } from "vitest";
+import type { LoadCartData, Product as ProductType } from "../../types";
 
 vi.mock("axios");
 
 describe("Product component", () => {
-  let product;
-  let loadCartData;
-  let user;
+  let product: ProductType;
+  let loadCartData: Mock<LoadCartData>;
+  let user: UserEvent;
 
   beforeEach(() => {
     user = userEvent.setup();
@@ -23,7 +25,6 @@ describe("Product component", () => {
         count: 87,
       },
       priceCents: 1090,
-      keywords: ["socks", "sports", "apparel"],
     };
 
     loadCartData = vi.fn();
@@ -51,7 +52,6 @@ describe("Product component", () => {
     expect(screen.getByText("87")).toBeInTheDocument();
   });
 
-  // 9c: Test quantity selector
   it("can select a quantity", () => {
     render(<Product product={product} loadCartData={loadCartData} />);
 
@@ -59,7 +59,6 @@ describe("Product component", () => {
     expect(quantitySelector).toHaveValue("1");
   });
 
-  // 9d: Test updating quantity
   it("updates quantity when selected", async () => {
     render(<Product product={product} loadCartData={loadCartData} />);
 
@@ -69,7 +68,6 @@ describe("Product component", () => {
     expect(quantitySelector).toHaveValue("3");
   });
 
-  // 9e: Test add to cart with updated quantity
   it("adds a product to the cart", async () => {
     render(<Product product={product} loadCartData={loadCartData} />);
 
@@ -79,7 +77,7 @@ describe("Product component", () => {
     const addToCartButton = screen.getByTestId("add-to-cart-button");
     await user.click(addToCartButton);
 
-    expect(axios.post).toHaveBeenCalledWith("/api/cart-items", {
+    expect(vi.mocked(axios.post)).toHaveBeenCalledWith("/api/cart-items", {
       productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       quantity: 1,
     });
