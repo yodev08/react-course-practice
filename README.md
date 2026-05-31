@@ -7,6 +7,7 @@ A collection of React practice projects from a comprehensive web development cou
 ### 1. 🛍️ [E-Commerce Project](./ecommerce-project)
 
 A fully-featured e-commerce website built with React, featuring:
+
 - Product display with responsive grid layout
 - Real-time search functionality
 - Shopping cart management with quantity editing
@@ -41,6 +42,7 @@ Node.js backend server providing REST API for the e-commerce project.
 **Endpoints**: Products, Cart Items, Orders, Delivery Options, Payment Summary
 
 **API Documentation**:
+
 - `GET /api/products` - Get product list
 - `GET /api/products?search=` - Search products
 - `POST /api/cart-items` - Add to cart
@@ -70,6 +72,7 @@ TypeScript version of the e-commerce project with enhanced type safety.
 ### E-Commerce Project (Main)
 
 **Frontend:**
+
 ```bash
 cd ecommerce-project
 npm install
@@ -79,6 +82,7 @@ npm test -- --run  # Run tests
 ```
 
 **Backend:**
+
 ```bash
 cd ecommerce-backend
 npm install
@@ -100,16 +104,17 @@ npm run dev
 This repository represents a complete React learning journey:
 
 ### Phase 1: Fundamentals
+
 - Component structure and JSX
 - State management with hooks (useState, useEffect)
 - Props and data flow
 
 ### Phase 2: E-Commerce Features
+
 - **Lesson 8**: Core features (shopping cart, search, quantity editing)
   - Add to cart functionality
   - Real-time search with URL parameters
   - Quantity input and updates
-  
 - **Lesson 9**: Automated Testing
   - Unit tests with Vitest
   - Component testing with React Testing Library
@@ -117,6 +122,7 @@ This repository represents a complete React learning journey:
   - 13+ tests covering core functionality
 
 ### Phase 3: Advanced Topics
+
 - Routing with React Router
 - API integration with Axios
 - Component composition and reusability
@@ -126,16 +132,16 @@ This repository represents a complete React learning journey:
 
 ## 🛠 Technology Stack
 
-| Category | Technologies |
-|----------|---|
-| **Frontend Framework** | React 19 |
-| **Build Tool** | Vite 6 |
-| **Routing** | React Router 7 |
-| **HTTP Client** | Axios |
-| **Testing** | Vitest, React Testing Library |
-| **Styling** | CSS3 (Grid, Flexbox) |
-| **Backend** | Node.js, Express |
-| **Language** | JavaScript, TypeScript |
+| Category               | Technologies                  |
+| ---------------------- | ----------------------------- |
+| **Frontend Framework** | React 19                      |
+| **Build Tool**         | Vite 6                        |
+| **Routing**            | React Router 7                |
+| **HTTP Client**        | Axios                         |
+| **Testing**            | Vitest, React Testing Library |
+| **Styling**            | CSS3 (Grid, Flexbox)          |
+| **Backend**            | Node.js, Express              |
+| **Language**           | JavaScript, TypeScript        |
 
 ---
 
@@ -152,12 +158,15 @@ This repository represents a complete React learning journey:
 ## 📸 E-Commerce Project Screenshots
 
 ### Home Page
+
 ![Home Page](./ecommerce-project/screenshots/home-page.png)
 
 ### Checkout Page
+
 ![Checkout](./ecommerce-project/screenshots/checkout-page.png)
 
 ### Delivery Tracking
+
 ![Tracking](./ecommerce-project/screenshots/tracking-page.png)
 
 ---
@@ -165,6 +174,7 @@ This repository represents a complete React learning journey:
 ## 📝 Key Learnings
 
 ### Best Practices Implemented
+
 - ✅ Component composition and reusability
 - ✅ Hook usage patterns (useState, useEffect, useContext)
 - ✅ URL-based state management for search persistence
@@ -176,14 +186,17 @@ This repository represents a complete React learning journey:
 ### Challenges & Solutions
 
 **Search Persistence**
+
 - Problem: Search query lost on navigation
 - Solution: Store search in URL parameters using `useSearchParams()`
 
 **Progress Calculation**
+
 - Problem: Real-time delivery tracking updates
 - Solution: Calculate percentage based on elapsed time vs. total time
 
 **Component Extraction**
+
 - Problem: Avoiding prop drilling and component bloat
 - Solution: Extract reusable components (CartItemDetails, OrderHeader, etc.)
 
