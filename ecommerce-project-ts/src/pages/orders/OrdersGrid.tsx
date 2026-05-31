@@ -1,0 +1,18 @@
+import { OrderHeader } from "./OrderHeader";
+import { OrderDetailsGrid } from "./OrderDetailsGrid";
+import type { Order } from "../../types";
+
+export function OrdersGrid({ orders }: { orders: Order[] }) {
+  return (
+    <div className="orders-grid">
+      {orders.map((order) => {
+        return (
+          <div key={order.id} className="order-container">
+            <OrderHeader order={order} />
+            <OrderDetailsGrid order={order} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
