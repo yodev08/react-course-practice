@@ -9,9 +9,14 @@ vi.mock("axios");
 
 describe("HomePage component", () => {
   let loadCartData;
+  let user;
 
   beforeEach(() => {
+    user = userEvent.setup();
     loadCartData = vi.fn();
+    
+    // Clear all mocks before each test
+    vi.clearAllMocks();
 
     axios.get.mockImplementation(async (urlPath) => {
       if (urlPath === "/api/products") {
@@ -63,5 +68,60 @@ describe("HomePage component", () => {
     expect(
       within(productContainers[1]).getByText("Intermediate Size Basketball"),
     ).toBeInTheDocument();
+  });
+
+  // 9g: Test Add to Cart buttons on HomePage
+  it("can add products to cart", async () => {
+    render(
+      <MemoryRouter>
+        <HomePage cart={[]} loadCartData={loadCartData} />
+      </MemoryRouter>,
+    );
+
+    const productContainers = await screen.findAllByTestId("product-container");
+
+    const firstAddButton = within(productContainers[0]).getByTestId("add-to-cart-button");
+    await user.click(firstAddButton);
+
+    const secondAddButton = within(productContainers[1]).getByTestId("add-to-cart-button");
+    await user.click(secondAddButton);
+
+    expect(axios.post).toHaveBeenNthCalledWith(1, "/api/cart-items", {
+      productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+      quantity: 1,
+    });
+
+    expect(axios.post).toHaveBeenNthCalledWith(2, "/api/cart-items", {
+      productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+      quantity: 1,
+    });
+
+    expect(loadCartData).toHaveBeenCalledTimes(2);
+  });
+
+  // 9h: Test quantity selection before adding to cart
+  it("can select different quantities and add to cart", async () => {
+    render(
+      <MemoryRouter>
+        <HomePage cart={[]} loadCartData={loadCartData} />
+      </MemoryRouter>,
+    );
+
+    const productContainers = await screen.findAllByTestId("product-container");
+
+    const firstQuantitySelector = within(productContainers[0]).getByTestId("quantity-selector");
+    await user.selectOptions(firstQuantitySelector, "2");
+
+    const secondQuantitySelector = within(productContainers[1]).getByTestId("quantity-selector");
+    await user.selectOptions(secondQuantitySelector, "3");
+
+    const firstAddButton = within(productContainers[0]).getByTestId("add-to-cart-button");
+    await user.click(firstAddButton);
+
+    const secondAddButton = within(productContainers[1]).getByTestId("add-to-cart-button");
+    await user.click(secondAddButton);
+
+    expect(axios.post).toHaveBeenCalledTimes(2);
+    expect(loadCartData).toHaveBeenCalledTimes(2);
   });
 });

@@ -8,10 +8,12 @@ vi.mock("axios");
 
 describe("Product component", () => {
   let product;
-
   let loadCartData;
+  let user;
 
   beforeEach(() => {
+    user = userEvent.setup();
+    
     product = {
       id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -48,10 +50,32 @@ describe("Product component", () => {
 
     expect(screen.getByText("87")).toBeInTheDocument();
   });
-  it("adds a product to the cart ", async () => {
+
+  // 9c: Test quantity selector
+  it("can select a quantity", () => {
     render(<Product product={product} loadCartData={loadCartData} />);
 
-    const user = userEvent.setup();
+    const quantitySelector = screen.getByTestId("quantity-selector");
+    expect(quantitySelector).toHaveValue("1");
+  });
+
+  // 9d: Test updating quantity
+  it("updates quantity when selected", async () => {
+    render(<Product product={product} loadCartData={loadCartData} />);
+
+    const quantitySelector = screen.getByTestId("quantity-selector");
+    await user.selectOptions(quantitySelector, "3");
+    
+    expect(quantitySelector).toHaveValue("3");
+  });
+
+  // 9e: Test add to cart with updated quantity
+  it("adds a product to the cart", async () => {
+    render(<Product product={product} loadCartData={loadCartData} />);
+
+    const quantitySelector = screen.getByTestId("quantity-selector");
+    await user.selectOptions(quantitySelector, "3");
+
     const addToCartButton = screen.getByTestId("add-to-cart-button");
     await user.click(addToCartButton);
 
